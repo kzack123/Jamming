@@ -27,7 +27,7 @@ const Spotify = {
 				return response.json();
 			})
 			.then(jsonResponse => {
-				if (!jsonResponse.tacks) {
+				if (!jsonResponse.tracks) {
 					return [];
 				}
 				return jsonResponse.tracks.items.map(track => {
@@ -42,6 +42,7 @@ const Spotify = {
 			});
 	},
 	savePlaylist(name, trackUris) {
+    console.log(name, trackUris);
 		if (!name || !trackUris || trackUris.length === 0) return;
 		const userUrl = 'https://api.spotify.com/v1/me';
 		const headers = {

@@ -24,13 +24,12 @@ class App extends Component {
   }
 
   addTrack(track) {
-    if (this.state.playlistTracks.every(plTrack => plTrack !== this.key)) {
-      let newPlaylistTrack = this.state.playlistTracks.concat(track);
-      this.setState({
-        playlistTracks: newPlaylistTrack
-      });
+      if (!this.state.playlistTracks.find(playlistTrack => playlistTrack.id === track.id)) {
+        this.setState(prevState => ({
+          playlistTracks: [...prevState.playlistTracks, track]
+        }));
+      }
     }
-  }
 
   removeTrack(track) {
     let filter = this.state.playlistTracks.filter(currTrack => currTrack.id !== track.id);
@@ -46,28 +45,21 @@ class App extends Component {
   }
 
   savePlaylist() {
-    Spotify.savePlaylist();
+    const trackUris = this.state.playlistTracks.map(playlistTrack => playlistTrack.uri);
+    Spotify.savePlaylist(this.state.playlistName, trackUris);
     this.setState({
-      playlistName: 'New Playlist',
       searchResults: []
     })
+    this.updatePlaylistName('My Playlist');
+    console.log('new playlist name is ', this.state.playlistName, this.state.searchResults);
   }
 
   search(term) {
-  console.log("the term which is the state from searchbar", term);
   Spotify.search(term).then(searchResults => {
-    console.log("spotify search term is", searchResults);
     this.setState({searchResults: searchResults});
   });
 }
 
-search(term) {
-  console.log("the term which is the state from searchbar", term);
-  Spotify.search(term).then(searchResults => {
-    console.log("spotify search term is", searchResults);
-    this.setState({searchResults: searchResults});
-  });
-}
 
   render() {
     return (

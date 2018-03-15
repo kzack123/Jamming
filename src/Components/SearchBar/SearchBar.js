@@ -18,8 +18,6 @@ class SearchBar extends React.Component {
   }
 
   search(term) {
-    //debugging console log
-    console.log(this.state.term);
     this.props.onSearch(this.state.term);
   }
 
