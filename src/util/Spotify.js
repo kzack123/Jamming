@@ -1,5 +1,5 @@
 let accessToken = undefined;
-const clientID = '';
+const clientID = '23df9805450b4188878a16f7fd2f9825';
 const redirectURI = 'http://localhost:3000/';
 let expiresIn = undefined;
 
@@ -21,7 +21,7 @@ const Spotify  = {
       }
       else
       {
-        const url = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=oken&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
+        const url = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
         window.location = url;
       }
     },
