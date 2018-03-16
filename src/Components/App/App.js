@@ -52,7 +52,6 @@ class App extends Component {
       playlistTracks: [],
     })
     this.updatePlaylistName('My Playlist');
-    console.log('new playlist name is ', this.state.playlistName, this.state.searchResults);
   }
 
   search(term) {
